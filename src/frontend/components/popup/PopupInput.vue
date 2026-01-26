@@ -694,9 +694,6 @@ defineExpose({
 
     <!-- 文本输入区域 -->
     <div v-if="!loading" class="space-y-3">
-      <h4 class="text-sm font-medium text-white">
-        {{ hasOptions ? '补充说明 (可选)' : '请输入您的回复' }}
-      </h4>
 
       <!-- 自定义prompt按钮区域 -->
       <div v-if="customPromptEnabled && customPrompts.length > 0" class="space-y-2" data-guide="custom-prompts">

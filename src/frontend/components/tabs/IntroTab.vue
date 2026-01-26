@@ -5,8 +5,8 @@ import ProjectInfoCard from '../common/ProjectInfoCard.vue'
 const features = [
   {
     icon: 'i-carbon-chat text-lg text-blue-600 dark:text-blue-400',
-    title: 'Zhi 智能审查工具',
-    subtitle: '寸止交互系统',
+    title: 'Weidao 智能审查工具',
+    subtitle: '未到交互系统',
     iconBg: 'bg-blue-100',
     features: [
       '智能代码审查交互',

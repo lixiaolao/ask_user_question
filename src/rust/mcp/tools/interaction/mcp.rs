@@ -1,19 +1,19 @@
 use anyhow::Result;
 use rmcp::{Error as McpError, model::*};
 
-use crate::mcp::{ZhiRequest, PopupRequest};
+use crate::mcp::{WeidaoRequest, PopupRequest};
 use crate::mcp::handlers::{create_tauri_popup, parse_mcp_response};
 use crate::mcp::utils::{generate_request_id, popup_error};
 
-/// 智能代码审查交互工具
+/// 未到工具
 ///
-/// 支持预定义选项、自由文本输入和图片上传
+/// 未到畅享大模型编程能力，一切由用户自主选择
 #[derive(Clone)]
 pub struct InteractionTool;
 
 impl InteractionTool {
-    pub async fn zhi(
-        request: ZhiRequest,
+    pub async fn weidao(
+        request: WeidaoRequest,
     ) -> Result<CallToolResult, McpError> {
         let popup_request = PopupRequest {
             id: generate_request_id(),

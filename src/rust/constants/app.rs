@@ -1,7 +1,7 @@
 // 应用程序相关常量
 
 /// 应用程序名称
-pub const NAME: &str = "寸止";
+pub const NAME: &str = "未到";
 
 /// 应用程序英文名称
 pub const NAME_EN: &str = "cunzhi";

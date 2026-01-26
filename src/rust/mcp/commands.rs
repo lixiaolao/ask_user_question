@@ -27,17 +27,17 @@ pub async fn get_mcp_tools_config(state: State<'_, AppState>) -> Result<Vec<MCPT
     // 动态构建工具配置列表
     let mut tools = Vec::new();
     
-    // 寸止工具 - 始终存在，无配置选项
+    // 未到工具 - 始终存在，无配置选项
     tools.push(MCPToolConfig {
-        id: mcp::TOOL_ZHI.to_string(),
-        name: "寸止".to_string(),
-        description: "智能代码审查交互工具，支持预定义选项、自由文本输入和图片上传".to_string(),
-        enabled: config.mcp_config.tools.get(mcp::TOOL_ZHI).copied().unwrap_or(true),
-        can_disable: false, // 寸止工具是必需的
+        id: mcp::TOOL_WEIDAO.to_string(),
+        name: "未到".to_string(),
+        description: "未到畅享大模型编程能力，一切由用户自主选择".to_string(),
+        enabled: config.mcp_config.tools.get(mcp::TOOL_WEIDAO).copied().unwrap_or(true),
+        can_disable: false, // 未到工具是必需的
         icon: "i-carbon-chat text-lg text-blue-600 dark:text-blue-400".to_string(),
         icon_bg: "bg-blue-100 dark:bg-blue-900".to_string(),
         dark_icon_bg: "dark:bg-blue-800".to_string(),
-        has_config: false, // 寸止工具没有配置选项
+        has_config: false, // 未到工具没有配置选项
     });
     
     // 记忆管理工具 - 始终存在，无配置选项
@@ -84,8 +84,8 @@ pub async fn set_mcp_tool_enabled(
         let mut config = state.config.lock().map_err(|e| format!("获取配置失败: {}", e))?;
         
         // 检查工具是否可以禁用
-        if tool_id == mcp::TOOL_ZHI && !enabled {
-            return Err("寸止工具是必需的，无法禁用".to_string());
+        if tool_id == mcp::TOOL_WEIDAO && !enabled {
+            return Err("未到工具是必需的，无法禁用".to_string());
         }
         
         // 更新工具状态

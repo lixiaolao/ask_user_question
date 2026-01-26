@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import { useMessage } from 'naive-ui'
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useVersionCheck } from '../../composables/useVersionCheck'
 
 const message = useMessage()
-const { versionInfo, manualCheckUpdate, safeOpenUrl, lastCheckTime, isChecking, getVersionInfo } = useVersionCheck()
-
-// 格式化最后检查时间
-const formattedLastCheckTime = computed(() => {
-  return lastCheckTime.value ? lastCheckTime.value.toLocaleString('zh-CN') : ''
-})
+const { versionInfo, safeOpenUrl, getVersionInfo } = useVersionCheck()
 
 // 安全打开GitHub链接
 async function openGitHub() {
@@ -45,23 +40,6 @@ async function openGitHubStars() {
   }
 }
 
-// 检查版本更新
-async function checkVersion() {
-  try {
-    const info = await manualCheckUpdate()
-    if (info?.hasUpdate) {
-      message.info(`发现新版本 v${info.latest}！`)
-    }
-    else {
-      message.success('当前已是最新版本')
-    }
-  }
-  catch (error) {
-    console.error('检查版本失败:', error)
-    message.error('检查版本失败，请稍后重试')
-  }
-}
-
 // 组件挂载时初始化版本信息
 onMounted(async () => {
   try {
@@ -87,34 +65,11 @@ onMounted(async () => {
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 dark:text-white text-sm">
-            寸止 {{ versionInfo ? `v${versionInfo.current}` : 'v0.2.0' }}
+            未到 {{ versionInfo ? `v${versionInfo.current}` : 'v0.2.0' }}
           </h3>
           <p class="text-xs text-gray-500 dark:text-gray-400">
             智能代码审查工具，支持MCP协议集成
           </p>
-        </div>
-      </div>
-
-      <!-- 右侧：版本检查区域 -->
-      <div class="flex flex-col items-end gap-1">
-        <n-button
-          size="medium"
-          secondary
-          :loading="isChecking"
-          @click="checkVersion"
-        >
-          <template #icon>
-            <div class="i-carbon-renew text-green-600 dark:text-green-400" />
-          </template>
-          检查更新
-        </n-button>
-
-        <!-- 最后检查时间 -->
-        <div
-          v-if="formattedLastCheckTime"
-          class="text-xs text-gray-400 dark:text-gray-500"
-        >
-          最后检查: {{ formattedLastCheckTime }}
         </div>
       </div>
     </div>

@@ -22,66 +22,30 @@ export const CORE_RULES = `- 除非特别说明否则不要创建文档、不要
 
 // 提示词常量对象
 export const PROMPT_SECTIONS = {
-  // Zhi 工具（寸止）提示词
-  zhi: {
-    base: `- 只能通过MCP \`寸止\` 对我进行询问，禁止直接询问或结束任务询问`,
-    detail: `寸止工具使用细节：
-- 需求不明确时使用 \`寸止\` 询问澄清，提供预定义选项
-- 在有多个方案的时候，需要使用 \`寸止\` 询问，而不是自作主张
-- 在有方案/策略需要更新时，需要使用 \`寸止\` 询问，而不是自作主张
-- 即将完成请求前必须调用 \`寸止\` 请求反馈
-- 在没有明确通过使用 \`寸止\` 询问并得到可以完成任务/结束时，禁止主动结束对话/请求`,
-  } as PromptSection,
-
-  // 记忆管理工具提示词
-  memory: {
-    base: ``,
-    detail: `记忆管理使用细节：
-- 对话开始时查询 \`回忆\` 参数 \`project_path\` 为 git 的根目录
-- 当发现用户输入"请记住："时，要对用户的消息进行总结后调用 \`记忆\` 的 add 功能添加记忆
-- 使用 \`记忆\` 的 add 功能添加新记忆（content + category: rule/preference/pattern/context）
-- 仅在重要变更时更新记忆，保持简洁`,
-  } as PromptSection,
-
-  // 代码搜索工具提示词
-  sou: {
-    base: ``,
-    detail: `代码搜索工具：如果需要查找/搜索代码，优先使用 \`sou\` 工具查询`,
+  // weidao 工具（weidao）提示词
+  weidao: {
+    base: `- 只能通过MCP \`weidao\` 对我进行询问，禁止直接询问或结束任务询问`,
+    detail: `weidao工具使用细节：
+- 需求不明确时使用 \`weidao\` 询问澄清，提供预定义选项
+- 在有多个方案的时候，需要使用 \`weidao\` 询问，而不是自作主张
+- 在有方案/策略需要更新时，需要使用 \`weidao\` 询问，而不是自作主张
+- 即将完成请求前必须调用 \`weidao\` 请求反馈
+- 在没有明确通过使用 \`weidao\` 询问并得到可以完成任务/结束时，禁止主动结束对话/请求`,
   } as PromptSection,
 }
 
 // 默认MCP工具配置
 export const DEFAULT_MCP_TOOLS: MCPToolConfig[] = [
   {
-    id: 'zhi',
-    name: 'Zhi 智能审查工具',
-    description: '智能代码审查交互工具（寸止）',
+    id: 'weidao',
+    name: 'weidao 智能审查工具',
+    description: '智能代码审查交互工具（未到）',
     enabled: true,
     canDisable: false,
     icon: 'i-carbon-chat text-lg text-blue-600 dark:text-blue-400',
     iconBg: 'bg-blue-100',
     darkIconBg: 'dark:bg-blue-900',
-  },
-  {
-    id: 'memory',
-    name: '记忆管理工具',
-    description: '智能记忆存储和检索系统',
-    enabled: true,
-    canDisable: true,
-    icon: 'i-carbon-data-base text-lg text-purple-600 dark:text-purple-400',
-    iconBg: 'bg-purple-100',
-    darkIconBg: 'dark:bg-purple-900',
-  },
-  {
-    id: 'sou',
-    name: '代码搜索工具',
-    description: '基于查询在特定项目中搜索相关的代码上下文，支持语义搜索和增量索引',
-    enabled: false,
-    canDisable: true,
-    icon: 'i-carbon-search text-lg text-green-600 dark:text-green-400',
-    iconBg: 'bg-green-100',
-    darkIconBg: 'dark:bg-green-900',
-  },
+  }
 ]
 
 // 生成完整提示词（根据MCP工具开关状态）

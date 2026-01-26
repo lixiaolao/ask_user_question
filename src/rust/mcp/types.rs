@@ -2,7 +2,7 @@ use chrono;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, schemars::JsonSchema)]
-pub struct ZhiRequest {
+pub struct WeidaoRequest {
     #[schemars(description = "要显示给用户的消息")]
     pub message: String,
     #[schemars(description = "预定义的选项列表（可选）")]
@@ -15,34 +15,6 @@ pub struct ZhiRequest {
 
 fn default_is_markdown() -> bool {
     true
-}
-
-#[derive(Debug, Deserialize, schemars::JsonSchema)]
-pub struct JiyiRequest {
-    #[schemars(description = "操作类型：记忆(添加记忆), 回忆(获取项目信息)")]
-    pub action: String,
-    #[schemars(description = "项目路径（必需）")]
-    pub project_path: String,
-    #[schemars(description = "记忆内容（记忆操作时必需）")]
-    #[serde(default)]
-    pub content: String,
-    #[schemars(
-        description = "记忆分类：rule(规范规则), preference(用户偏好), pattern(最佳实践), context(项目上下文)"
-    )]
-    #[serde(default = "default_category")]
-    pub category: String,
-}
-
-#[derive(Debug, Deserialize, schemars::JsonSchema)]
-pub struct AcemcpRequest {
-    #[schemars(description = "项目根目录的绝对路径，使用正斜杠(/)作为分隔符")]
-    pub project_root_path: String,
-    #[schemars(description = "用于查找相关代码上下文的自然语言搜索查询")]
-    pub query: String,
-}
-
-fn default_category() -> String {
-    "context".to_string()
 }
 
 #[derive(Debug, Serialize, Deserialize)]

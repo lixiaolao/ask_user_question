@@ -2,7 +2,6 @@ import { ref } from 'vue'
 import { useFontManager } from './useFontManager'
 import { initMcpTools } from './useMcpTools'
 import { useSettings } from './useSettings'
-import { useVersionCheck } from './useVersionCheck'
 
 /**
  * 应用初始化组合式函数
@@ -11,7 +10,6 @@ export function useAppInitialization(mcpHandler: ReturnType<typeof import('./use
   const isInitializing = ref(true)
   const { loadFontConfig, loadFontOptions } = useFontManager()
   const settings = useSettings()
-  const { autoCheckUpdate } = useVersionCheck()
   const { checkMcpMode, setupMcpEventListener } = mcpHandler
 
   /**
@@ -78,11 +76,6 @@ export function useAppInitialization(mcpHandler: ReturnType<typeof import('./use
         console.log('检测到首次启动，标记应用已初始化')
         markAsInitialized()
       }
-
-      // 自动检查版本更新并弹窗（非阻塞）
-      autoCheckUpdate().catch(() => {
-        // 静默处理版本检查失败
-      })
 
       // 结束初始化状态
       isInitializing.value = false

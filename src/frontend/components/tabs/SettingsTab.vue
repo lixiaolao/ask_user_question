@@ -10,7 +10,6 @@ import ReplySettings from '../settings/ReplySettings.vue'
 import ShortcutSettings from '../settings/ShortcutSettings.vue'
 import TelegramSettings from '../settings/TelegramSettings.vue'
 import ThemeSettings from '../settings/ThemeSettings.vue'
-import VersionChecker from '../settings/VersionChecker.vue'
 import WindowSettings from '../settings/WindowSettings.vue'
 
 interface Props {
@@ -377,30 +376,6 @@ function handleWindowSizeUpdate(size: { width: number, height: number, fixed: bo
               </div>
             </div>
           </n-space>
-        </div>
-      </n-collapse-item>
-
-      <!-- 版本检查 -->
-      <n-collapse-item name="version">
-        <template #header>
-          <div class="flex items-center justify-between w-full">
-            <div class="flex items-center">
-              <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-4">
-                <div class="i-carbon-update-now text-lg text-purple-600 dark:text-purple-400" />
-              </div>
-              <div>
-                <div class="text-lg font-medium tracking-tight mb-1">
-                  版本检查
-                </div>
-                <div class="text-sm opacity-60 font-normal">
-                  检查应用更新和版本信息
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-        <div class="setting-content">
-          <VersionChecker />
         </div>
       </n-collapse-item>
     </n-collapse>

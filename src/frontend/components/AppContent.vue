@@ -3,8 +3,6 @@ import { useMessage } from 'naive-ui'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { setupExitWarningListener } from '../composables/useExitWarning'
 import { useKeyboard } from '../composables/useKeyboard'
-import { useVersionCheck } from '../composables/useVersionCheck'
-import UpdateModal from './common/UpdateModal.vue'
 import LayoutWrapper from './layout/LayoutWrapper.vue'
 import McpPopup from './popup/McpPopup.vue'
 import PopupHeader from './popup/PopupHeader.vue'
@@ -52,9 +50,6 @@ interface Emits {
 
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
-
-// 版本检查相关
-const { versionInfo, showUpdateModal } = useVersionCheck()
 
 // 弹窗中的设置显示控制
 const showPopupSettings = ref(false)
@@ -239,12 +234,6 @@ onUnmounted(() => {
       @test-audio-error="$emit('testAudioError', $event)"
       @update-window-size="$emit('updateWindowSize', $event)"
       @config-reloaded="$emit('configReloaded')"
-    />
-
-    <!-- 更新弹窗 -->
-    <UpdateModal
-      v-model:show="showUpdateModal"
-      :version-info="versionInfo"
     />
   </div>
 </template>

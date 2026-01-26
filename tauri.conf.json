@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2.0.0",
-  "productName": "寸止",
+  "productName": "未到",
   "version": "0.4.0",
   "identifier": "com.imhuso.cunzhi",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "寸止",
+        "title": "未到",
         "width": 600,
         "height": 800,
         "minWidth": 600,
@@ -52,10 +52,7 @@
             "core:webview:allow-set-webview-focus",
             "core:webview:allow-webview-position",
             "core:webview:allow-webview-size",
-            "shell:allow-open",
-            "updater:allow-check",
-            "updater:allow-download",
-            "updater:allow-install"
+            "shell:allow-open"
 
           ]
         }
@@ -64,7 +61,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["app"],
     "icon": [
       "icons/icon-32.png",
       "icons/icon-128.png",
@@ -73,15 +70,5 @@
       "icons/icon.ico",
       "icons/icon.icns"
     ]
-  },
-  "plugins": {
-    "updater": {
-      "active": true,
-      "endpoints": [
-        "https://api.github.com/repos/imhuso/cunzhi/releases/latest"
-      ],
-      "dialog": false,
-      "pubkey": ""
-    }
   }
 }
