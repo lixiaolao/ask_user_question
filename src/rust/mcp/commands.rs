@@ -27,17 +27,17 @@ pub async fn get_mcp_tools_config(state: State<'_, AppState>) -> Result<Vec<MCPT
     // 动态构建工具配置列表
     let mut tools = Vec::new();
     
-    // 未到工具 - 始终存在，无配置选项
+    // ask_user_question工具 - 始终存在，无配置选项
     tools.push(MCPToolConfig {
         id: mcp::TOOL_WEIDAO.to_string(),
-        name: "未到".to_string(),
-        description: "未到畅享大模型编程能力，一切由用户自主选择".to_string(),
+        name: "ask_user_question".to_string(),
+        description: "Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options. You can provide up to 4 options, each with a label and description. NEVER include \"other\" as an option - the user can always automatically provide a custom response.".to_string(),
         enabled: config.mcp_config.tools.get(mcp::TOOL_WEIDAO).copied().unwrap_or(true),
-        can_disable: false, // 未到工具是必需的
+        can_disable: false, // ask_user_question工具是必需的
         icon: "i-carbon-chat text-lg text-blue-600 dark:text-blue-400".to_string(),
         icon_bg: "bg-blue-100 dark:bg-blue-900".to_string(),
         dark_icon_bg: "dark:bg-blue-800".to_string(),
-        has_config: false, // 未到工具没有配置选项
+        has_config: false, // ask_user_question工具没有配置选项
     });
     
     // 记忆管理工具 - 始终存在，无配置选项
@@ -85,7 +85,7 @@ pub async fn set_mcp_tool_enabled(
         
         // 检查工具是否可以禁用
         if tool_id == mcp::TOOL_WEIDAO && !enabled {
-            return Err("未到工具是必需的，无法禁用".to_string());
+            return Err("ask_user_question工具是必需的，无法禁用".to_string());
         }
         
         // 更新工具状态

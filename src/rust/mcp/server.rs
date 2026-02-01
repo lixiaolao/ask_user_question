@@ -7,28 +7,28 @@ use rmcp::{
 };
 
 use super::tools::InteractionTool;
-use super::types::WeidaoRequest;
+use super::types::AskUserQuestionRequest;
 use crate::{log_important, log_debug};
 
 #[derive(Clone, Default)]
-pub struct WeidaoServer;
+pub struct AskUserQuestionServer;
 
-impl WeidaoServer {
+impl AskUserQuestionServer {
     pub fn new() -> Self {
         Self
     }
 }
 
-impl ServerHandler for WeidaoServer {
+impl ServerHandler for AskUserQuestionServer {
     fn get_info(&self) -> ServerInfo {
         ServerInfo {
             protocol_version: ProtocolVersion::V_2024_11_05,
             capabilities: ServerCapabilities::builder().enable_tools().build(),
             server_info: Implementation {
-                name: "Weidao-mcp".to_string(),
+                name: "ask_user_question-mcp".to_string(),
                 version: env!("CARGO_PKG_VERSION").to_string(),
             },
-            instructions: Some("Weidao 未到畅享大模型编程能力，一切由用户自主选择".to_string()),
+            instructions: Some("Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options. You can provide up to 4 options, each with a label and description. NEVER include \"other\" as an option - the user can always automatically provide a custom response.".to_string()),
         }
     }
 
@@ -50,8 +50,8 @@ impl ServerHandler for WeidaoServer {
 
         let mut tools = Vec::new();
 
-        // 未到工具
-        let weidao_schema = serde_json::json!({
+        // ask_user_question工具
+        let ask_user_question_schema = serde_json::json!({
             "type": "object",
             "properties": {
                 "message": {
@@ -71,10 +71,10 @@ impl ServerHandler for WeidaoServer {
             "required": ["message"]
         });
 
-        if let serde_json::Value::Object(schema_map) = weidao_schema {
+        if let serde_json::Value::Object(schema_map) = ask_user_question_schema {
             tools.push(Tool {
-                name: Cow::Borrowed("weidao"),
-                description: Some(Cow::Borrowed("未到畅享大模型编程能力，一切由用户自主选择")),
+                name: Cow::Borrowed("ask_user_question"),
+                description: Some(Cow::Borrowed("Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options. You can provide up to 4 options, each with a label and description. NEVER include \"other\" as an option - the user can always automatically provide a custom response.")),
                 input_schema: Arc::new(schema_map),
                 annotations: None,
             });
@@ -96,17 +96,17 @@ impl ServerHandler for WeidaoServer {
         log_debug!("收到工具调用请求: {}", request.name);
 
         match request.name.as_ref() {
-            "weidao" => {
+            "ask_user_question" => {
                 // 解析请求参数
                 let arguments_value = request.arguments
                     .map(serde_json::Value::Object)
                     .unwrap_or(serde_json::Value::Object(serde_json::Map::new()));
 
-                let weidao_request: WeidaoRequest = serde_json::from_value(arguments_value)
+                let ask_user_question_request: AskUserQuestionRequest = serde_json::from_value(arguments_value)
                     .map_err(|e| McpError::invalid_params(format!("参数解析失败: {}", e), None))?;
 
-                // 调用未到工具
-                InteractionTool::weidao(weidao_request).await
+                // 调用ask_user_question工具
+                InteractionTool::ask_user_question(ask_user_question_request).await
             }
             _ => {
                 Err(McpError::invalid_request(
@@ -123,7 +123,7 @@ impl ServerHandler for WeidaoServer {
 /// 启动MCP服务器
 pub async fn run_server() -> Result<(), Box<dyn std::error::Error>> {
     // 创建并运行服务器
-    let service = WeidaoServer::new()
+    let service = AskUserQuestionServer::new()
         .serve(stdio())
         .await
         .inspect_err(|e| {

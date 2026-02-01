@@ -12,7 +12,7 @@ name = "等一下"
 path = "src/rust/main.rs"
 
 [[bin]]
-name = "未到"
+name = "ask_user_question"
 path = "src/rust/bin/mcp_server.rs"
 
 [dependencies]

@@ -100,12 +100,12 @@ function testPopup() {
           <div class="flex items-center justify-center gap-3 mb-3" data-guide="app-logo">
             <img
               src="/icons/icon-128.png"
-              alt="未到 Logo"
+              alt="ask_user_question Logo"
               class="w-10 h-10 rounded-xl shadow-lg"
               @error="handleImageError"
             >
             <h1 class="text-4xl font-medium text-white">
-              未到
+              ask_user_question
             </h1>
             <!-- 测试按钮 -->
             <n-button

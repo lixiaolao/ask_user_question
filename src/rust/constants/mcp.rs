@@ -1,7 +1,7 @@
 // MCP 工具相关常量
 
-/// 未到工具标识符
-pub const TOOL_WEIDAO: &str = "weidao";
+/// ask_user_question工具标识符
+pub const TOOL_WEIDAO: &str = "ask_user_question";
 
 /// 记忆管理工具标识符
 pub const TOOL_JI: &str = "ji";
@@ -60,7 +60,7 @@ impl Default for McpConfig {
     fn default() -> Self {
         Self {
             tools: vec![
-                McpToolConfig::new(TOOL_WEIDAO, true, false), // 未到工具不可禁用
+                McpToolConfig::new(TOOL_WEIDAO, true, false), // ask_user_question工具不可禁用
                 McpToolConfig::new(TOOL_JI, false, true),   // 记忆管理工具可禁用，默认关闭
                 McpToolConfig::new(TOOL_SOU, false, true), // 代码搜索工具可禁用，默认关闭
             ],

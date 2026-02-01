@@ -1,19 +1,19 @@
 use anyhow::Result;
 use rmcp::{Error as McpError, model::*};
 
-use crate::mcp::{WeidaoRequest, PopupRequest};
+use crate::mcp::{AskUserQuestionRequest, PopupRequest};
 use crate::mcp::handlers::{create_tauri_popup, parse_mcp_response};
 use crate::mcp::utils::{generate_request_id, popup_error};
 
-/// 未到工具
+/// ask_user_question工具
 ///
-/// 未到畅享大模型编程能力，一切由用户自主选择
+/// Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options.
 #[derive(Clone)]
 pub struct InteractionTool;
 
 impl InteractionTool {
-    pub async fn weidao(
-        request: WeidaoRequest,
+    pub async fn ask_user_question(
+        request: AskUserQuestionRequest,
     ) -> Result<CallToolResult, McpError> {
         let popup_request = PopupRequest {
             id: generate_request_id(),

@@ -65,7 +65,7 @@ onMounted(async () => {
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 dark:text-white text-sm">
-            未到 {{ versionInfo ? `v${versionInfo.current}` : 'v0.2.0' }}
+            ask_user_question {{ versionInfo ? `v${versionInfo.current}` : 'v0.2.0' }}
           </h3>
           <p class="text-xs text-gray-500 dark:text-gray-400">
             智能代码审查工具，支持MCP协议集成

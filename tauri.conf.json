@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2.0.0",
-  "productName": "未到",
+  "productName": "ask_user_question",
   "version": "0.4.0",
   "identifier": "com.imhuso.cunzhi",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "未到",
+        "title": "ask_user_question",
         "width": 600,
         "height": 800,
         "minWidth": 600,
