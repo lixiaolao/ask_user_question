@@ -28,7 +28,7 @@ impl ServerHandler for AskUserQuestionServer {
                 name: "ask_user_question-mcp".to_string(),
                 version: env!("CARGO_PKG_VERSION").to_string(),
             },
-            instructions: Some("ask_user_question 畅享大模型编程能力，一切由用户自主选择".to_string()),
+            instructions: Some("Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options. You can provide up to 4 options, each with a label and description. NEVER include \"other\" as an option - the user can always automatically provide a custom response.".to_string()),
         }
     }
 
@@ -74,7 +74,7 @@ impl ServerHandler for AskUserQuestionServer {
         if let serde_json::Value::Object(schema_map) = ask_user_question_schema {
             tools.push(Tool {
                 name: Cow::Borrowed("ask_user_question"),
-                description: Some(Cow::Borrowed("ask_user_question 畅享大模型编程能力，一切由用户自主选择")),
+                description: Some(Cow::Borrowed("Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options. You can provide up to 4 options, each with a label and description. NEVER include \"other\" as an option - the user can always automatically provide a custom response.")),
                 input_schema: Arc::new(schema_map),
                 annotations: None,
             });

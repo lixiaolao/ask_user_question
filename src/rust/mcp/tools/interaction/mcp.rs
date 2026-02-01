@@ -7,7 +7,7 @@ use crate::mcp::utils::{generate_request_id, popup_error};
 
 /// ask_user_question工具
 ///
-/// ask_user_question 畅享大模型编程能力，一切由用户自主选择
+/// Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options.
 #[derive(Clone)]
 pub struct InteractionTool;
 

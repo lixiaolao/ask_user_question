@@ -31,7 +31,7 @@ pub async fn get_mcp_tools_config(state: State<'_, AppState>) -> Result<Vec<MCPT
     tools.push(MCPToolConfig {
         id: mcp::TOOL_WEIDAO.to_string(),
         name: "ask_user_question".to_string(),
-        description: "ask_user_question 畅享大模型编程能力，一切由用户自主选择".to_string(),
+        description: "Ask the user a question with predefined options. Use this when you need the user to make a choice between specific options. You can provide up to 4 options, each with a label and description. NEVER include \"other\" as an option - the user can always automatically provide a custom response.".to_string(),
         enabled: config.mcp_config.tools.get(mcp::TOOL_WEIDAO).copied().unwrap_or(true),
         can_disable: false, // ask_user_question工具是必需的
         icon: "i-carbon-chat text-lg text-blue-600 dark:text-blue-400".to_string(),
