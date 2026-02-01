@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN || github.token }}
 
       - name: Get release information
         id: release_info
@@ -92,7 +92,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: imhuso/homebrew-cunzhi
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN || github.token }}
           path: homebrew-tap
 
       - name: Configure git for homebrew-tap
