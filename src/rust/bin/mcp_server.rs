@@ -6,6 +6,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 自动初始化日志系统
     auto_init_logger()?;
 
-    log_important!(info, "启动 Weidao MCP 服务器");
+    log_important!(info, "启动 ask_user_question MCP 服务器");
     run_server().await
 }

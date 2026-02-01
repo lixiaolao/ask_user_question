@@ -1,6 +1,6 @@
-//! 未到工具模块
+//! ask_user_question工具模块
 //!
-//! 未到畅享大模型编程能力，一切由用户自主选择
+//! ask_user_question 畅享大模型编程能力，一切由用户自主选择
 
 pub mod mcp;
 

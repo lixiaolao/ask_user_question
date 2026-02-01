@@ -22,30 +22,30 @@ export const CORE_RULES = `- 除非特别说明否则不要创建文档、不要
 
 // 提示词常量对象
 export const PROMPT_SECTIONS = {
-  // weidao 工具（weidao）提示词
-  weidao: {
-    base: `- 只能通过MCP \`weidao\` 对我进行询问，禁止直接询问或结束任务询问`,
-    detail: `weidao工具使用细节：
-- 需求不明确时使用 \`weidao\` 询问澄清，提供预定义选项
-- 在有多个方案的时候，需要使用 \`weidao\` 询问，而不是自作主张
-- 在有方案/策略需要更新时，需要使用 \`weidao\` 询问，而不是自作主张
-- 即将完成请求前必须调用 \`weidao\` 请求反馈
-- 在没有明确通过使用 \`weidao\` 询问并得到可以完成任务/结束时，禁止主动结束对话/请求`,
+  // ask_user_question 工具提示词
+  ask_user_question: {
+    base: `- 只能通过MCP \`ask_user_question\` 对我进行询问，禁止直接询问或结束任务询问`,
+    detail: `ask_user_question工具使用细节：
+- 需求不明确时使用 \`ask_user_question\` 询问澄清，提供预定义选项
+- 在有多个方案的时候，需要使用 \`ask_user_question\` 询问，而不是自作主张
+- 在有方案/策略需要更新时，需要使用 \`ask_user_question\` 询问，而不是自作主张
+- 即将完成请求前必须调用 \`ask_user_question\` 请求反馈
+- 在没有明确通过使用 \`ask_user_question\` 询问并得到可以完成任务/结束时，禁止主动结束对话/请求`,
   } as PromptSection,
 }
 
 // 默认MCP工具配置
 export const DEFAULT_MCP_TOOLS: MCPToolConfig[] = [
   {
-    id: 'weidao',
-    name: 'weidao 智能审查工具',
-    description: '智能代码审查交互工具（未到）',
+    id: 'ask_user_question',
+    name: 'ask_user_question 智能审查工具',
+    description: '智能代码审查交互工具',
     enabled: true,
     canDisable: false,
     icon: 'i-carbon-chat text-lg text-blue-600 dark:text-blue-400',
     iconBg: 'bg-blue-100',
     darkIconBg: 'dark:bg-blue-900',
-  }
+  },
 ]
 
 // 生成完整提示词（根据MCP工具开关状态）
